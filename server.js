@@ -1,13 +1,18 @@
 const express=require('express');
 const {handleMongoDbConnections}=require('./db');
-const Person=require('./models/person')
-const menuItem=require('./models/menu');
+
 const bodyParser=require('body-parser');
+require('dotenv').config();
+// console.log("All ENV Vars:", process.env); // Check what variables are available
+
 
 const personRouter=require('./routes/person')
 const menuRouter=require('./routes/menuRouter');
 const app=express();
-handleMongoDbConnections('mongodb://127.0.0.1:27017/hotels').then(()=>{
+const mdburl=process.env.DB_URL;
+console.log("mdburl",mdburl);
+// const mogodbUrl='mongodb+srv://iklakhhussain09:Pe5lUsDDJG9LLq28@cluster0.fuexbqz.mongodb.net/';
+handleMongoDbConnections(mdburl).then(()=>{
     console.log('mongodb conected');
 })
 app.use(bodyParser.json());
@@ -22,11 +27,11 @@ app.use('/menu',menuRouter);
 
 
 
-// git added
+// git added 
 
 
 
-const PORT=3000;
+const PORT=process.env.PORT||3000;
 app.listen(PORT,()=>{
     console.log(`server is running on ${PORT}`)
 })

@@ -11,7 +11,7 @@ const menuRouter=require('./routes/menuRouter');
 const app=express();
 const mdburl=process.env.DB_URL;
 console.log("mdburl",mdburl);
-// const mogodbUrl='mongodb+srv://iklakhhussain09:Pe5lUsDDJG9LLq28@cluster0.fuexbqz.mongodb.net/';
+
 handleMongoDbConnections(mdburl).then(()=>{
     console.log('mongodb conected');
 })
